@@ -29,6 +29,7 @@ const StarLine = () => {
                     <span>UNLOCK YOUR GAMING POTENTIAL WITH US</span>
                     <span>UNLOCK YOUR GAMING POTENTIAL WITH US</span>
             </Marquee>
+
         </div>
     );
 };
