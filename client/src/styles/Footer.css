@@ -1,0 +1,10 @@
+@media (max-width: 1104px){
+    #upperFooter{
+        flex-direction: column;
+    }
+}
+
+
+.footerLi:hover{
+    color: #00FFFF;
+}

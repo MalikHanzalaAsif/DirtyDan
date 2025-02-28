@@ -1,0 +1,8 @@
+body{
+    font-family: "Aldrich", serif;
+}
+
+.backdrop-blur-md {
+    will-change: transform;
+}
+  

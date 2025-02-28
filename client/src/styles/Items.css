@@ -1,0 +1,22 @@
+#Items {
+    text-align: center;
+    margin: 20px;
+}
+
+.ItemsTabs {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 20px;
+}
+
+.ItemsTabs button {
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.ItemsTabs button.activeTab {
+    color: #00FFFF;
+    text-decoration: underline 2px solid #00FFFF;
+}

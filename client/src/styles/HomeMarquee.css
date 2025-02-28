@@ -1,0 +1,55 @@
+
+  .HomeMarquee {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+  }
+  
+  .HomeMarquee p {
+    color: transparent; /* Make text fully transparent */
+    -webkit-text-stroke: 0.5px gray; /* White outline */
+    text-stroke: 0.5px gray; /* Fallback for other browsers */
+    display: inline-block;
+    font-size: 4rem;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }  
+  
+  .HomeMarquee-top {
+    top: 8rem;
+  }
+  
+  .HomeMarquee-bottom {
+    bottom: 4rem;
+  }
+  
+  .HomeMarquee-top p {
+    animation-name: marqueeLeftToRight;
+  }
+  
+  .HomeMarquee-bottom p {
+    animation-name: marqueeRightToLeft;
+  }
+  
+  /* Left to Right Animation */
+  @keyframes marqueeLeftToRight {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Right to Left Animation */
+  @keyframes marqueeRightToLeft {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  

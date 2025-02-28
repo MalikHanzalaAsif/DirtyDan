@@ -1,0 +1,10 @@
+#Guidance{
+    background-image: url(/img/Guidance_Bg_Img.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.GuidanceMainText{
+    text-shadow: 5px 5px 50px rgba(228, 8, 191, 0.7);
+}

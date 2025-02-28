@@ -1,0 +1,24 @@
+#Home{
+    height: 100vh;
+    background-image: url(/img/bg_img.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@keyframes floatUpDown {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+#HomeArrow {
+    animation: floatUpDown 1s ease-in-out infinite;
+}
+  
