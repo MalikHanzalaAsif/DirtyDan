@@ -4,6 +4,7 @@ import "../styles/Items.css";
 import { Modal, Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import colors from "../utils/colors";
+import useStore from "../store/store";
 const ModalStyle = {
     position: 'absolute',
     top: '50%',
@@ -19,6 +20,12 @@ const ModalStyle = {
 };
 
 const Items = () => {
+    const addToCart = useStore((state) => state.addToCart);
+    const handleAddToCart = () =>{
+        addToCart(selectedItem);
+        handleClose();
+    }
+
     // modal state
     const [isModalOpen, setModalOpen] = useState(false);
     const [zoomModalOpen, setZoomModalOpen] = useState(false);
@@ -34,9 +41,19 @@ const Items = () => {
     const filteredItems = ItemsArray.filter((item) => item.category === activeTab);
 
 
+    // color state
     const [selectedColor, setSelectedColor] = useState(null);
-    const handleSelect = (color) => {
+    const handleColorSelect = (color) => {
         setSelectedColor(color.name);
+        setSelectedItem({...selectedItem, color: color.name})
+    };
+
+    // size state
+    const sizes = ['SM', 'MD', 'LG', 'XL', 'XXL'];
+    const [selectedSize, setSelectedSize] = useState(null);
+    const handleSizeSelect = (size) => {
+        setSelectedSize(size);
+        setSelectedItem({...selectedItem, size: size})
     };
     return (
         <section id="Items">
@@ -84,28 +101,56 @@ const Items = () => {
             >
                 <Box sx={ModalStyle} className="w-[90vw] md:w-[50vw]">
                     <div className="flex justify-center items-center">
-                        <img src={selectedItem?.image} alt={selectedItem?.title} className="h-50 hover:scale-105 transition cursor-pointer" onClick={() => setZoomModalOpen(true)} />
+                        <img src={selectedItem?.image} alt={selectedItem?.title} className="h-48 hover:scale-105 transition cursor-pointer" onClick={() => setZoomModalOpen(true)} />
                     </div>
                     <h2 className="text-4xl mt-4">{selectedItem?.title}</h2>
                     <h2 className="text-3xl text-gray-500 my-4">${selectedItem?.price}</h2>
                     <div id="ModalOptions">
-                        <div className="flex space-x-3">
-                            {colors.map((color) => (
-                                <div
-                                    key={color.name}
-                                    className={`w-6 h-6 rounded-full cursor-pointer 
+                        <div id="ColorSelect" className="mt-8">
+                            <h3 className="text-2xl mb-2">Color</h3>
+                            <div className="flex space-x-3">
+                                {colors.map((color) => (
+                                    <div
+                                        key={color.name}
+                                        className={`w-6 h-6 rounded-full cursor-pointer 
                                     ${selectedColor === color.name ? 'ring-2 ring-offset-2 ring-gray-800' : ''}`}
-                                    style={{
-                                        backgroundColor: color.colorCode,
-                                        border: color.border ? '1px solid #ddd' : 'none'
-                                    }}
-                                    onClick={() => handleSelect(color)}
-                                ></div>
-                            ))}
+                                        style={{
+                                            backgroundColor: color.colorCode,
+                                            border: color.border ? '1px solid #ddd' : 'none'
+                                        }}
+                                        onClick={() => handleColorSelect(color)}
+                                    ></div>
+                                ))}
+                            </div>
+                            {selectedColor && (
+                                <p className="mt-4 text-sm text-white">Selected Color: <span className={`text-md text-[${selectedColor.colorCode}]`}>{selectedColor}</span></p>
+                            )}
                         </div>
-                        {selectedColor && (
-                            <p className="mt-2 text-sm text-gray-600">Selected: <span className={`text-md text-[${selectedColor.colorCode}]`}>{selectedColor}</span></p>
-                        )}
+                        <div id="SizeSelect" className="mt-8">
+                        <h3 className="text-2xl mb-2">Size</h3>
+                            <div className="flex space-x-2">
+                                {sizes.map((size) => (
+                                    <button
+                                        key={size}
+                                        className={`px-3 py-1 border rounded-md 
+                        ${selectedSize === size
+                                                ? 'border-gray-800 bg-gray-800 text-white'
+                                                : 'border-gray-300 hover:bg-gray-100 hover:text-black cursor-pointer'
+                                            }`}
+                                        onClick={() => handleSizeSelect(size)}
+                                    >
+                                        {size}
+                                    </button>
+                                ))}
+                            </div>
+                            {selectedSize && (
+                                <p className="mt-4 text-sm text-white">Selected Size: <span className="font-medium">{selectedSize}</span></p>
+                            )}
+                        </div>
+                    </div>
+                    <div id="ModalButtons" className="mt-12">
+                        <button className="border py-2 px-4 mr-8 hover:bg-red-600 transition-colors cursor-pointer" onClick={handleClose}>Close</button>
+                        <button className="bg-[#079b9b] border py-2 px-6 hover:bg-white hover:text-black transition-colors cursor-pointer" onClick={handleAddToCart}>Add to Cart</button>
                     </div>
                 </Box>
             </Modal>
@@ -120,7 +165,6 @@ const Items = () => {
                         left: "50%",
                         transform: "translate(-50%, -50%)",
                         maxHeight: "90vh",
-                        // bgcolor: "background.paper",
                         borderRadius: 2,
                         boxShadow: 24,
                         p: 2,

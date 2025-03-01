@@ -6,6 +6,7 @@ import Content from '../components/Content';
 import AboutPage from '../pages/AboutPage';
 import Shop from '../pages/Shop';
 import ContactPage from '../pages/ContactPage';
+import Cart from '../pages/Cart';
 
 const WebRoutes = () => {
     return (
@@ -17,6 +18,7 @@ const WebRoutes = () => {
                     <Route path='/about' element={<AboutPage />} />
                     <Route path='/shop' element={<Shop />} />
                     <Route path='/contact' element={<ContactPage />} />
+                    <Route path='/cart' element={<Cart />} />
                 </Route>
             </Routes>
         </Router>

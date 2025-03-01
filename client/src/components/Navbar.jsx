@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, ShoppingCart, User } from "lucide-react";
 import "../styles/Navbar.css";
-import { NavLink } from "react-router";
+import { NavLink, Link } from "react-router";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-  };
+    };
 
 
     const handleClickOutside = (event) => {
@@ -55,7 +55,9 @@ export default function Navbar() {
 
         {/* Right Section - Icons */}
         <div className="flex items-center space-x-4">
-          <ShoppingCart className="w-6 h-6 text-white cursor-pointer hover:text-gray-400" />
+          <Link to="/cart">
+            <ShoppingCart className="w-6 h-6 text-white cursor-pointer hover:text-gray-400" />
+          </Link>
           <User className="w-6 h-6 text-white cursor-pointer hover:text-gray-400" />
           {/* Hamburger Menu Button (Mobile) */}
           <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>

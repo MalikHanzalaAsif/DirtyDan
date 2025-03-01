@@ -22,7 +22,7 @@ const ContactPage = () => {
                     type="text"
                     placeholder='Full Name *'
                     required
-                    className='placeholder-white p-4 border-2 border-gray-600 text-white w-full my-4 bg-transparent focus:outline-none focus:ring-0'
+                    className='placeholder-gray-400 p-4 border-2 border-gray-600 text-white w-full my-4 bg-transparent focus:outline-none focus:ring-0'
                     style={{ height: '3rem' }}
                     {...register("fullName", {
                         required: {
@@ -41,7 +41,7 @@ const ContactPage = () => {
                     type="email"
                     placeholder='Email Address *'
                     required
-                    className='placeholder-white p-4 border-2 border-gray-600 text-white w-full my-4 bg-transparent focus:outline-none focus:ring-0'
+                    className='placeholder-gray-400 p-4 border-2 border-gray-600 text-white w-full my-4 bg-transparent focus:outline-none focus:ring-0'
                     style={{ height: '3rem' }}
                     {...register("email", {
                         required: {
@@ -82,7 +82,7 @@ const ContactPage = () => {
                 <textarea
                     placeholder='Write Your Message...'
                     required
-                    className='placeholder-white p-4 border-2 border-gray-600 text-white w-full my-4 bg-transparent resize-none focus:outline-none focus:ring-0'
+                    className='placeholder-gray-400 p-4 border-2 border-gray-600 text-white w-full my-4 bg-transparent resize-none focus:outline-none focus:ring-0'
                     rows={5}
                     {...register("message", {
                         required: {

@@ -84,7 +84,7 @@ const Guidance = () => {
                     </div>
                 ))}
             </div>
-            <img src="/img/Guidance_Mobile_Img.webp" alt="mobile img" className='absolute h-55 bottom-0' />
+            <img src="/img/Guidance_Mobile_Img.webp" alt="mobile img" className='absolute h-56 bottom-0' />
         </section>
     )
 }
