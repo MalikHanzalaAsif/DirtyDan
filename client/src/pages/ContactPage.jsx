@@ -5,15 +5,17 @@ import "../styles/ContactPage.css"
 import { useForm } from "react-hook-form";
 import { Controller } from 'react-hook-form';
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+import CircularProgress from '@mui/material/CircularProgress';
+import { sendEmails } from '../api/contactApi';
 
 
 const ContactPage = () => {
-    const { register, handleSubmit, watch, control, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, control, reset, formState: { errors, isSubmitting } } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data)
-    }
-
+    const onSubmit = async (formData) => {
+       await sendEmails(formData);
+       reset();
+    };
     return (
         <section id="ContactPage" className='bg-[#121411] pt-20'>
             <h1 className='text-white text-7xl text-center py-8'>Contact <span className='text-[#00FFFF]'>Us</span></h1>
@@ -99,8 +101,8 @@ const ContactPage = () => {
 
                 <button
                     type='submit'
-                    className='bg-[#01a3a3] p-2 w-full text-white my-4 cursor-pointer hover:bg-white hover:text-[#01a3a3] transition-colors duration-300'>
-                    Submit
+                    className='bg-[#01a3a3] p-2 w-full text-white my-4 cursor-pointer hover:bg-white hover:text-[#01a3a3] transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50' disabled={isSubmitting}>
+                    {isSubmitting ? <CircularProgress size={"25px"} color='white'/> : "Submit"}
                 </button>
             </form>
         </section>

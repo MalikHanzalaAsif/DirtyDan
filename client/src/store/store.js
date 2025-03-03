@@ -34,7 +34,7 @@ const useStore = create(
                             ),
                         };
                     } else {
-                        return { cart: [...state.cart, item] };
+                        return { cart: [...state.cart] };
                     }
                 }),
 

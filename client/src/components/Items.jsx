@@ -5,6 +5,7 @@ import { Modal, Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import colors from "../utils/colors";
 import useStore from "../store/store";
+import toastEmitter from "./ui/toast";
 const ModalStyle = {
     position: 'absolute',
     top: '50%',
@@ -24,6 +25,10 @@ const Items = () => {
     const handleAddToCart = () =>{
         addToCart(selectedItem);
         handleClose();
+        toastEmitter({
+            title: "item added to cart!",
+            type: "success"
+        });
     }
 
     // modal state

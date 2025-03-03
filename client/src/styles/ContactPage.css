@@ -33,7 +33,7 @@
 
 /* Optional: placeholder color */
 .custom-phone-input::placeholder {
-    color: white !important;
+    color: gray !important;
     font-family: "Aldrich", serif;
 }
 
