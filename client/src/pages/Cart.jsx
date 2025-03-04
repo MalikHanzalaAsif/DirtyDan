@@ -7,9 +7,9 @@ import CloseIcon from "@mui/icons-material/Close";
 
 
 const Cart = () => {
-    const { cart, addToCart, decreaseQuantity, removeFromCart } = useStore();
+    const { cart, addToCart, decreaseQuantity, removeFromCart, clearCart } = useStore();
     const totalCartPrice = cart.reduce((total, currItem) => {
-      return (Number(total) + Number(currItem.price) * currItem.quantity).toFixed(2);
+        return (Number(total) + Number(currItem.price) * currItem.quantity).toFixed(2);
     }, 0);
 
     const [zoomModalOpen, setZoomModalOpen] = useState(false);
@@ -18,12 +18,14 @@ const Cart = () => {
         <section className="antialiased bg-gray-900 py-28">
             <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Shopping Cart</h2>
-            <button className='text-white border p-1 mt-8 rounded-lg hover:opacity-60'>REMOVE ALL ITEMS</button>
+                {cart.length >= 2 && (
+                    <button className='text-white border p-1 mt-8 rounded-md hover:opacity-60' onClick={clearCart}>REMOVE ALL ITEMS</button>
+                )}
                 {cart.length === 0 ? (
                     <div id="EmptyCart" className='h-screen flex flex-col items-center mt-12'>
                         <iframe src="https://lottie.host/embed/af236b38-973e-4e7d-b3e0-c34eeaea8833/BcemYLjH6k.lottie" className='h-60'></iframe>
                         <h1 className='text-white text-5xl text-center mt-4'>Your Cart is Empty!</h1>
-                        <Link to="/shop" className="bg-[#2999da] border py-4 px-8 text-white hover:bg-white hover:text-black transition-colors cursor-pointer mt-8">Shop Now</Link>
+                        <Link to="/shop" className="bg-[#2999da] border py-3 px-6 text-white hover:bg-white hover:text-black transition-colors cursor-pointer mt-8 text-2xl">Shop Now</Link>
                     </div>
                 ) : (
                     <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
@@ -33,8 +35,8 @@ const Cart = () => {
 
                                     <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
                                         <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0" key={item.id}>
-                                            <a href="#" className="shrink-0 md:order-1">
-                                                <img className="hidden h-20 w-20 dark:block" src={item.image} alt={item.title} onClick={() => {
+                                            <a href="#" className="shrink-0 md:order-1 flex">
+                                                <img className="hidden h-24 dark:block" src={item.image} alt={item.title} onClick={() => {
                                                     setSelectedItem(item);
                                                     setZoomModalOpen(true);
                                                 }} />
@@ -103,7 +105,7 @@ const Cart = () => {
                                     </dl>
                                 </div>
 
-                                <a href="#" className="flex w-full items-center justify-center rounded-lg bg-[#079b9b] px-5 py-2.5 text-sm font-medium text-white hover:bg-white hover:text-black focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-cyan-800 transition-colors">Proceed to Checkout</a>
+                                <Link to='/checkout' className="flex w-full items-center justify-center rounded-lg bg-[#079b9b] px-5 py-2.5 text-sm font-medium text-white hover:bg-white hover:text-black focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-cyan-800 transition-colors">Proceed to Checkout</Link>
 
                                 <div className="flex items-center justify-center gap-2">
                                     <span className="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>

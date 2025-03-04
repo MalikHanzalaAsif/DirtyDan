@@ -2,11 +2,16 @@ import { useState, useEffect, useRef } from "react";
 import { Menu, X, ShoppingCart, User } from "lucide-react";
 import "../styles/Navbar.css";
 import { NavLink, Link } from "react-router";
+import Badge from '@mui/material/Badge';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { cyan } from '@mui/material/colors';
+import useStore from "../store/store";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef(null);
+  const { cart } = useStore();
 
   const handleCloseMenu = () => {
     setIsOpen(false);
@@ -56,7 +61,9 @@ export default function Navbar() {
         {/* Right Section - Icons */}
         <div className="flex items-center space-x-4">
           <Link to="/cart">
-            <ShoppingCart className="w-6 h-6 text-white cursor-pointer hover:text-gray-400" />
+            <Badge badgeContent={cart.length} color="primary">
+              <ShoppingCartOutlinedIcon fontSize="medium" className="cursor-pointer hover:text-gray-400" />
+            </Badge>
           </Link>
           <User className="w-6 h-6 text-white cursor-pointer hover:text-gray-400" />
           {/* Hamburger Menu Button (Mobile) */}

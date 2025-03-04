@@ -7,6 +7,7 @@ import AboutPage from '../pages/AboutPage';
 import Shop from '../pages/Shop';
 import ContactPage from '../pages/ContactPage';
 import Cart from '../pages/Cart';
+import CheckoutPage from '../pages/CheckoutPage';
 
 const WebRoutes = () => {
     return (
@@ -19,6 +20,7 @@ const WebRoutes = () => {
                     <Route path='/shop' element={<Shop />} />
                     <Route path='/contact' element={<ContactPage />} />
                     <Route path='/cart' element={<Cart />} />
+                    <Route path='/checkout' element={<CheckoutPage />} />
                 </Route>
             </Routes>
         </Router>

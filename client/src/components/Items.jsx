@@ -68,7 +68,7 @@ const Items = () => {
                     return (
                         <button
                             key={index}
-                            className={`${activeTab === item ? "activeTab" : ""} hover:opacity-60 transition`}
+                            className={`${activeTab === item ? "activeTab" : ""} hover:opacity-60`}
                             onClick={() => setActiveTab(item)}
                         >
                             {item}
