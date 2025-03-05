@@ -38,7 +38,7 @@ const getOrderDetails = async (orderId, accessToken) => {
 };
 
 
-export const sendEmails = async (formData, user, orderDetails, orderId) => {
+export const sendEmails = async (formData, orderDetails, orderId) => {
     try {
         const breakdown = orderDetails.purchase_units[0].amount.breakdown || {};
 
@@ -103,20 +103,15 @@ export const sendEmails = async (formData, user, orderDetails, orderId) => {
             to: process.env.TO_EMAIL,
             subject: "New Order on HellSpawn2017",
             text: `
-                -------- CUSTOMER DETAILS --------
-                NAME: ${orderDetails.payer.name.given_name} ${orderDetails.payer.name.surname}
-                EMAIL: ${orderDetails.payer.email_address}
-                PHONE: ${formData.phone}
+                -------- CUSTOMER GIVEN DETAILS --------
+                NAME: ${formData.firstName} ${formData.lastName}
+                EMAIL: ${formData.email || "Not Provided"}
+                PHONE: ${formData.phone || "Not Provided"}
                 ADDRESS: ${formData.address || "Not Provided"}
                 CITY: ${formData.city || "Not Provided"}
                 STATE: ${formData.state || "Not Provided"}
                 ZIP CODE: ${formData.zipCode || "Not Provided"}
                 
-                -------- HELLSPAWN PROFILE DETAILS --------
-                NAME: ${user.name}
-                EMAIL: ${user.email}
-                ID: ${user.id}
-
                 -------- ORDER DETAILS --------
                 ORDER ID: ${orderId}
                 TOTAL: ${orderDetails.purchase_units[0].amount.value} ${orderDetails.purchase_units[0].amount.currency_code}
@@ -134,6 +129,8 @@ export const sendEmails = async (formData, user, orderDetails, orderId) => {
                 ${cartItemsString}
                 
                 -------- CUSTOMER PAYPAL ACCOUNT DETAILS --------
+                NAME: ${orderDetails.payer.name.given_name} ${orderDetails.payer.name.surname}
+                EMAIL: ${orderDetails.payer.email_address}
                 ADDRESS: ${orderDetails.purchase_units[0].shipping.address.address_line_1 || "Not Provided"}
                 CITY: ${orderDetails.purchase_units[0].shipping.address.admin_area_2 || "Not Provided"}
                 STATE: ${orderDetails.purchase_units[0].shipping.address.admin_area_1 || "Not Provided"}
@@ -150,33 +147,20 @@ export const sendEmails = async (formData, user, orderDetails, orderId) => {
 
         const userMailOptions = {
             from: process.env.FROM_EMAIL,
-            to: user.email,
+            to: formData.email,
             subject: "Order placed succesfully on HellSpawn2017",
-            text: `Dear ${user.name}/${formData.firstName} ${formData?.lastName}!
+            text: `Dear ${formData.firstName} ${formData?.lastName}!
              Thank you for your purchase. 
              Your order has been placed successfully.
              Your order ID is ${orderId}. 
              Check your paypal account for more details. 
              if you have any queries feel free to reach us. Thanks!`
         };
-        if (user.email === formData.email) {
+
             // Send email asynchronously
             const userInfo = await transporter.sendMail(userMailOptions);
             console.log("Email sent successfully to user:", userInfo.response);
-        } else {
-            const userMailOptions2 = {
-                from: process.env.FROM_EMAIL,
-                to: formData.email,
-                subject: "Order placed succesfully on HellSpawn2017",
-                text: `Dear ${user.name}/${formData.firstName} ${formData?.lastName}! Thank you for your purchase. Your order has been placed successfully. Your order ID is ${orderId}. Check your paypal account for more details. if you have any queries feel free to reach us. Thanks!`
-            };
-            // Send email asynchronously
-            const userInfo = await transporter.sendMail(userMailOptions);
-            console.log("Email sent successfully to first user:", userInfo.response);
-            // Send email asynchronously
-            const userInfo2 = await transporter.sendMail(userMailOptions2);
-            console.log("Email sent successfully to second user:", userInfo2.response);
-        }
+
     } catch (error) {
         console.error("Failed to send emails:", error);
         throw error;
@@ -185,13 +169,12 @@ export const sendEmails = async (formData, user, orderDetails, orderId) => {
 
 export const verifyPayment = async (req, res) => {
     const { orderId, formData } = req.body;
-    const user = req.user;
     try {
         const accessToken = await getAccessToken();
         const orderDetails = await getOrderDetails(orderId, accessToken);
         if (orderDetails.status === "COMPLETED") {
             res.json({ message: "Payment verified.", type: "success", orderDetails });
-            await sendEmails(formData, user, orderDetails, orderId);
+            await sendEmails(formData, orderDetails, orderId);
         } else {
             return res.status(400).json({ type: "error", message: "Payment not completed." });
         }

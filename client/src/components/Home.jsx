@@ -10,8 +10,8 @@ const Home = () => {
             <HomeMarquee text={"BEST GAMING & STREAMING MERCH"} position={"top"} />
             <div id='HomeMainDiv' className='h-full flex flex-col justify-center items-center'>
                 <h3 id="HomeUpperText" className='text-[#00FFFF] text-sm text-center font-semibold mt-14'>&mdash; YOUR FAVOURITE MERCH &mdash;</h3>
-                <h1 id='HomeMainText' className='text-5xl text-white text-center mt-4'>WEAR WHAT YOU WANT TO BE</h1>
-                <h1 id='HomeMainText' className='text-5xl text-white text-center mt-2'>BE DIFFERENT</h1>
+                <h1 id='HomeMainText' className='text-5xl text-white text-center mt-4'>DirtyDan – Bold Style,</h1>
+                <h1 id='HomeMainText' className='text-5xl text-white text-center mt-2'>No Limits</h1>
                 <a href="#About">
                     <button id='HomeButton' className='bg-transparent text-white border-4 border-[#00FFFF] py-1 px-4 mt-8 transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:border-none hover:px-5 hover:py-2 from-[#00FFFF] to-[#016e6e] cursor-pointer'>VIEW MORE</button>
                 </a>

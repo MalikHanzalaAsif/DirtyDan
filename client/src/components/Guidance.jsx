@@ -43,8 +43,8 @@ const Guidance = () => {
             <div id="GuidanceContent" className='w-[90%] lg:w-1/2 p-12' style={{ zIndex: "2" }}>
                 <h3 id="GuidanceUpperText" className='text-[#FF56E8] text-md font-semibold mb-6 mt-12'>&mdash; FAQ'S &mdash;</h3>
                 <h1 className='GuidanceMainText text-6xl text-white'>NEED GUIDANCE?</h1>
-                <h1 className='GuidanceMainText text-6xl text-white'>WE'VE PROVIDED</h1>
-                <p className='text-gray-300 mt-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa soluta odio rerum dignissimos repellendus dolore expedita voluptatum nam nesciunt minus fugit, totam impedit eligendi nisi ab tempora nihil eaque optio.</p>
+                <h1 className='GuidanceMainText text-6xl text-white'>We've Got You Covered!</h1>
+                <p className='text-gray-300 mt-4'>At Dirty Dan, we're here to make your shopping experience seamless. Whether you're unsure about sizing, need product recommendations, or have any shipping questions, our team is ready to assist. Check out our detailed FAQs or reach out directly to our support team for personalized help. We're committed to providing you with the best customer service and ensuring you're satisfied with your purchase! Let us guide you every step of the way.</p>
                 <Link to="/shop">
                     <button id='ItemsSectionButton' className='bg-gradient-to-r from-[#FF56E8] to-[#750080] cursor-pointer hover:scale-110 transition-all duration-300 p-2 text-white mt-4 px-6 mb-22'>SHOP NOW</button>
                 </Link>

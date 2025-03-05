@@ -11,7 +11,7 @@ const Reviews = () => {
 
       <Marquee pauseOnHover={true} speed={30} gradient={false} className="flex">
         {ReviewsArray.map((review, index) => (
-          <div className="SingleReview w-96 m-6 border-2 border-gray-700" key={review.id}>
+          <div className="SingleReview w-96 h-64 m-6 border-2 border-gray-700" key={review.id}>
             <div id="ReviewDetails" className='flex items-center border-b-2 border-gray-700 p-2'>
               <img src="/icons/PersonIcon.webp" alt="person icon" className='h-16 p-2'/>
               <div>

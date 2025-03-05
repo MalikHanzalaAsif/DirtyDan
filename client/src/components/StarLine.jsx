@@ -34,11 +34,11 @@ const StarLine = () => {
 
 
             <Marquee pauseOnHover={false} direction="right" speed={100} gradient={false} className="flex gap-[50px] text-[3rem]">
-                <span>UNLOCK YOUR GAMING POTENTIAL WITH US</span>
-                <span>UNLOCK YOUR GAMING POTENTIAL WITH US</span>
-                <span>UNLOCK YOUR GAMING POTENTIAL WITH US</span>
-                <span>UNLOCK YOUR GAMING POTENTIAL WITH US</span>
-                <span>UNLOCK YOUR GAMING POTENTIAL WITH US</span>
+                <span className="mx-4"> DIRTY DAN: TRENDY MERCH, UNMATCHED STYLE! </span>
+                <span className="mx-4"> DIRTY DAN: TRENDY MERCH, UNMATCHED STYLE! </span>
+                <span className="mx-4"> DIRTY DAN: TRENDY MERCH, UNMATCHED STYLE! </span>
+                <span className="mx-4"> DIRTY DAN: TRENDY MERCH, UNMATCHED STYLE! </span>
+                <span className="mx-4"> DIRTY DAN: TRENDY MERCH, UNMATCHED STYLE! </span>
             </Marquee>
 
         </div>

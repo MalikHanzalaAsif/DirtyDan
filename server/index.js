@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000;
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import contactRoutes from "./routes/contactRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 // MIDDLEWARES
 app.use(
@@ -22,6 +23,8 @@ app.use(cookieParser());
 // ROUTES
 // contact routes
 app.use(contactRoutes);
+// order routes
+app.use(orderRoutes);
 
 
 // route for getting ping req to stay wake app

@@ -10,6 +10,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { verifyPaymentApi } from '../api/orderApi';
 import useStore from '../store/store';
+import { toast } from 'react-toastify';
 
 const ModalStyles = {
     position: 'absolute',
@@ -24,7 +25,7 @@ const ModalStyles = {
 };
 
 const CheckoutPage = () => {
-    const { cart } = useStore();
+    const { cart, clearCart } = useStore();
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -64,19 +65,19 @@ const CheckoutPage = () => {
     ).toFixed(2); // Ensure 2 decimal place
     return (
         <>
-            <div class="font-[sans-serif] bg-[#121411] pt-24">
-                <div class="flex max-sm:flex-col gap-12 max-lg:gap-4 h-full justify-center">
-                    <div class="max-w-4xl w-full h-max rounded-md px-4 py-8 sticky top-0">
-                        <h2 class="text-4xl   xl font-bold text-white">Complete <span className='text-[#00FFFF]'>your</span> order</h2>
-                        <form class="mt-8" onSubmit={handleSubmit(onSubmit)}>
+            <div className="font-[sans-serif] bg-[#121411] pt-24">
+                <div className="flex max-sm:flex-col gap-12 max-lg:gap-4 h-full justify-center">
+                    <div className="max-w-4xl w-full h-max rounded-md px-4 py-8 sticky top-0">
+                        <h2 className="text-4xl   xl font-bold text-white">Complete <span className='text-[#00FFFF]'>your</span> order</h2>
+                        <form className="mt-8" onSubmit={handleSubmit(onSubmit)}>
                             <div>
-                                <h3 class="text-lg text-white mb-4">Personal Details</h3>
-                                <div class="grid md:grid-cols-2 gap-4">
+                                <h3 className="text-lg text-white mb-4">Personal Details</h3>
+                                <div className="grid md:grid-cols-2 gap-4">
                                     <div>
                                         <input
                                             type="text"
                                             placeholder="First Name"
-                                            class="px-4 py-3 bg-transparent text-white w-full text-sm"
+                                            className="px-4 py-3 bg-transparent text-white w-full text-sm"
                                             required
                                             {...register("firstName", {
                                                 required: {
@@ -96,7 +97,7 @@ const CheckoutPage = () => {
                                         <input
                                             type="text"
                                             placeholder="Last Name"
-                                            class="px-4 py-3 bg-transparent text-white w-full text-sm"
+                                            className="px-4 py-3 bg-transparent text-white w-full text-sm"
                                             {...register("lastName")}
                                         />
                                         {errors.lastName && <span className='text-red-600 mb-4'>{errors.lastName.message}</span>}
@@ -106,7 +107,7 @@ const CheckoutPage = () => {
                                         <input
                                             type="email"
                                             placeholder="Email"
-                                            class="px-4 py-3 bg-transparent text-white w-full text-sm"
+                                            className="px-4 py-3 bg-transparent text-white w-full text-sm"
                                             required
                                             {...register("email", {
                                                 required: {
@@ -166,14 +167,14 @@ const CheckoutPage = () => {
                                 </div>
                             </div>
 
-                            <div class="mt-8">
-                                <h3 class="text-lg text-white mb-4">Shipping Address</h3>
-                                <div class="grid md:grid-cols-2 gap-4">
+                            <div className="mt-8">
+                                <h3 className="text-lg text-white mb-4">Shipping Address</h3>
+                                <div className="grid md:grid-cols-2 gap-4">
                                     <div>
                                         <input
                                             type="text"
                                             placeholder="Address Line"
-                                            class="px-4 py-3 bg-transparent text-white w-full text-sm"
+                                            className="px-4 py-3 bg-transparent text-white w-full text-sm"
                                             required
                                             {...register("address", {
                                                 required: {
@@ -188,7 +189,7 @@ const CheckoutPage = () => {
                                         <input
                                             type="text"
                                             placeholder="City"
-                                            class="px-4 py-3 bg-transparent text-white w-full text-sm"
+                                            className="px-4 py-3 bg-transparent text-white w-full text-sm"
                                             required
                                             {...register("city", {
                                                 required: {
@@ -203,7 +204,7 @@ const CheckoutPage = () => {
                                         <input
                                             type="text"
                                             placeholder="State"
-                                            class="px-4 py-3 bg-transparent text-white w-full text-sm"
+                                            className="px-4 py-3 bg-transparent text-white w-full text-sm"
                                             required
                                             {...register("state", {
                                                 required: {
@@ -218,7 +219,7 @@ const CheckoutPage = () => {
                                         <input
                                             type="number"
                                             placeholder="Zip Code"
-                                            class="px-4 py-3 bg-transparent text-white w-full text-sm"
+                                            className="px-4 py-3 bg-transparent text-white w-full text-sm"
                                             required
                                             {...register("zipCode", {
                                                 required: {
@@ -231,15 +232,15 @@ const CheckoutPage = () => {
                                     </div>
                                 </div>
 
-                                <div class="flex gap-4 max-md:flex-col mt-8">
-                                    <button type="button" class="px-4 py-2.5 w-full text-sm tracking-wide bg-transparent hover:opacity-70 border border-gray-300 text-white max-md:order-1" onClick={() => {
+                                <div className="flex gap-4 max-md:flex-col mt-8">
+                                    <button type="button" className="px-4 py-2.5 w-full text-sm tracking-wide bg-transparent hover:opacity-70 border border-gray-300 text-white max-md:order-1" onClick={() => {
                                         toastEmitter({
                                             title: "order has been interrupted!",
                                             type: "info",
                                         });
                                         navigate('/')
                                     }}>Cancel</button>
-                                    <button type="submit" class="px-4 py-2.5 w-full text-sm tracking-wide bg-[#079b9b] hover:bg-white hover:text-black text-white transition-colors">Continue Purchase</button>
+                                    <button type="submit" className="px-4 py-2.5 w-full text-sm tracking-wide bg-[#079b9b] hover:bg-white hover:text-black text-white transition-colors">Continue Purchase</button>
                                 </div>
                             </div>
                         </form>
@@ -326,15 +327,29 @@ const CheckoutPage = () => {
                                         });
                                     }}
                                     onApprove={async (data, actions) => {
-                                        return actions.order.capture().then(async (details) => {
-                                            const payerName =
-                                                details?.payer?.name?.given_name || "the buyer";
-                                            alert(`Transaction completed by ${payerName}!`);
-                                            console.log(details)
-                                            await verifyPaymentApi(details.id, formState);
-                                            navigate("/thank-you");
-                                        });
+                                        return toast.promise(
+                                            actions.order.capture().then(async (details) => {
+                                                const payerName = details?.payer?.name?.given_name || "the buyer";
+                                                alert(`Transaction completed by ${payerName}!`);
+
+                                                return verifyPaymentApi(details.id, formState)
+                                                    .then((response) => {
+                                                        clearCart(); 
+                                                        navigate("/thank-you");
+                                                        return response;
+                                                    });
+                                            }),
+                                            {
+                                                pending: 'Verifying Payment...',
+                                                success: 'Payment Verified Successfully!',
+                                                error: 'Payment Verification Failed!',
+                                            },
+                                            {
+                                                theme: "dark"
+                                            }
+                                        );
                                     }}
+
                                     onCancel={() => {
                                         alert("Payment was cancelled by user.");
                                     }}

@@ -2,7 +2,7 @@ export default [
     {
       "id": "6a88ee45-9761-4b14-8f6d-3e83674e6f02",
       "title": "Custom Tshirt",
-      "price": "99.99",
+      "price": "1.00",
       "image": "/img/tshirt1.webp",
       "category": "TSHIRTS",
       "quantity": "1",

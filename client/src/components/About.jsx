@@ -8,11 +8,8 @@ const About = () => {
             <div id="AboutContent" className='w-[70%] p-4' style={{zIndex: "2"}}>
                 <h3 id="AboutUpperText" className='text-[#00FFFF] text-sm font-semibold'>&mdash; YOUR FAVOURITE MERCH &mdash;</h3>
                 <h1 id="AboutMiddleText" className='text-3xl text-white mt-8'>
-                    Lorem ipsum dolor sit, <span className='text-[#00FFFF]'>amet adipisicing</span> elit. Explicabo nisi sed mollitia nemo possimus. unde illo officia <span className='text-[#00FFFF]'>officiis</span> hjnregwe <span className='text-[#00FFFF]'>nesciunt, neque,</span> iusto necessitatibus optio tenetur.
+                DirtyDan is your go-to <span className='text-[#00FFFF]'>global streetwear brand,</span> delivering <span className='text-[#00FFFF]'>bold, high-quality fashion </span>worldwide. With <span className='text-[#00FFFF]'>fast shipping, premium materials, and exclusive limited-edition drops,</span> we make sure you stand out in style. Our <span className='text-[#00FFFF]'>affordable yet trendy urban wear</span> offers the perfect mix of comfort and attitude. Plus, we’re committed to <span className='text-[#00FFFF]'>sustainable fashion, </span> so you can shop guilt-free. <span className='text-[#00FFFF]'>Join the DirtyDan movement today—where fashion knows no limits!</span>
                 </h1>
-                <p id="AboutBottomText" className='text-md text-gray-500 mt-6'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, veniam suscipit harum earum modi itaque repellendus tempora enim quas distinctio dolor, sit voluptatibus aut porro omnis sint qui! Natus, perspiciatis.
-                </p>
             </div>
         </section>
     )
