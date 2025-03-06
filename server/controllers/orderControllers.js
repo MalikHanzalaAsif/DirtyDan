@@ -150,11 +150,11 @@ export const sendEmails = async (formData, orderDetails, orderId) => {
             to: formData.email,
             subject: "Order placed succesfully on HellSpawn2017",
             text: `Dear ${formData.firstName} ${formData?.lastName}!
-             Thank you for your purchase. 
+             Thanks for choosing DirtyDan. 
              Your order has been placed successfully.
              Your order ID is ${orderId}. 
              Check your paypal account for more details. 
-             if you have any queries feel free to reach us. Thanks!`
+             if you have any queries feel free to reach us. Thank You!`
         };
 
             // Send email asynchronously

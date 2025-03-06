@@ -4,3 +4,35 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+@keyframes floatUpDown {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+}
+@keyframes floatDownUp {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(15px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+}
+
+.SaleShirtsShort{
+    animation: floatDownUp 1.7s ease-in-out infinite;
+}
+
+.SaleShirts{
+    animation: floatUpDown 2s ease-in-out infinite;
+}

@@ -42,7 +42,7 @@ const Items = () => {
     const handleClose = () => setModalOpen(false);
 
     const [activeTab, setActiveTab] = useState("TSHIRTS");
-    const categories = ["TSHIRTS", "TROUSERS", "HOODIES", "SWEATSHIRTS"];
+    const categories = ["TSHIRTS", "TROUSERS", "HOODIES", "SWEATSHIRTS", "SHORTS", "CAPS", "KEYCHAINS", "MOBILECOVERS", "MOUSEPADS", "MUGS", "NOTEBOOKS"];
     const filteredItems = ItemsArray.filter((item) => item.category === activeTab);
 
 
@@ -50,7 +50,11 @@ const Items = () => {
     const [selectedColor, setSelectedColor] = useState(null);
     const handleColorSelect = (color) => {
         setSelectedColor(color.name);
-        setSelectedItem({...selectedItem, color: color.name})
+        setSelectedItem((prev) => ({
+            ...prev,
+            color: color.name,
+            image: `/products/${selectedItem.category}_${color.name}.webp`
+        }))
     };
 
     // size state
@@ -58,12 +62,16 @@ const Items = () => {
     const [selectedSize, setSelectedSize] = useState(null);
     const handleSizeSelect = (size) => {
         setSelectedSize(size);
-        setSelectedItem({...selectedItem, size: size})
+        setSelectedItem((prev) => ({
+            ...prev,
+            size: size
+        }))
+
     };
     return (
         <section id="Items">
             {/* Tab Buttons */}
-            <div className="ItemsTabs flex flex-wrap">
+            <div className="ItemsTabs flex flex-wrap justify-center items-center max-w-[60vw] mx-auto">
                 {categories.map((item, index) => {
                     return (
                         <button
@@ -77,7 +85,7 @@ const Items = () => {
                 })}
             </div>
 
-            <h1 className="text-3xl text-white mt-8">{activeTab}</h1>
+            <h1 className="text-3xl text-white mt-12">{activeTab}</h1>
             {/* Tab Content */}
             <div className="ItemsContent flex justify-center items-center flex-wrap">
                 {filteredItems.map((item) => {

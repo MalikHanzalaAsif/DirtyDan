@@ -16,7 +16,7 @@
     100% {
       transform: translateY(0);
     }
-  }
+}
   
 #HomeArrow {
     animation: floatUpDown 1s ease-in-out infinite;
