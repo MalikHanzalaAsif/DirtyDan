@@ -22,7 +22,7 @@ const ModalStyle = {
 
 const Items = () => {
     const addToCart = useStore((state) => state.addToCart);
-    const handleAddToCart = () =>{
+    const handleAddToCart = () => {
         addToCart(selectedItem);
         handleClose();
         toastEmitter({
@@ -116,8 +116,13 @@ const Items = () => {
                     <div className="flex justify-center items-center">
                         <img src={selectedItem?.image} alt={selectedItem?.title} className="h-48 hover:scale-105 transition cursor-pointer" onClick={() => setZoomModalOpen(true)} />
                     </div>
-                    <h2 className="text-4xl mt-4">{selectedItem?.title}</h2>
-                    <h2 className="text-3xl text-gray-500 my-4">${selectedItem?.price}</h2>
+                    <div className="flex items-center">
+                        <h2 className="text-4xl mt-4">{selectedItem?.title}</h2>
+                        <h2 className="text-3xl text-gray-500 my-4 ml-auto">${selectedItem?.price}</h2>
+                    </div>
+                    <p className="mt-2 text-gray-400">
+                        {selectedItem?.description}
+                    </p>
                     <div id="ModalOptions">
                         <div id="ColorSelect" className="mt-8">
                             <h3 className="text-2xl mb-2">Color</h3>
@@ -140,7 +145,7 @@ const Items = () => {
                             )}
                         </div>
                         <div id="SizeSelect" className="mt-8">
-                        <h3 className="text-2xl mb-2">Size</h3>
+                            <h3 className="text-2xl mb-2">Size</h3>
                             <div className="flex space-x-2">
                                 {sizes.map((size) => (
                                     <button
@@ -162,7 +167,7 @@ const Items = () => {
                         </div>
                     </div>
                     <div id="ModalButtons" className="mt-12">
-                        <button className="border py-2 px-4 mr-8 hover:bg-red-600 transition-colors cursor-pointer" onClick={handleClose}>Close</button>
+                        <button className="border py-2 px-4 mr-8 bg-red-600 transition-colors cursor-pointer" onClick={handleClose}>Close</button>
                         <button className="bg-[#079b9b] border py-2 px-6 hover:bg-white hover:text-black transition-colors cursor-pointer" onClick={handleAddToCart}>Add to Cart</button>
                     </div>
                 </Box>
